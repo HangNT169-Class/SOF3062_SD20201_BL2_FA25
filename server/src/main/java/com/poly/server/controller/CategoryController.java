@@ -3,6 +3,7 @@ package com.poly.server.controller;
 import com.poly.server.model.request.CategoryRequest;
 import com.poly.server.model.response.CategoryResponse;
 import com.poly.server.service.CategoryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,12 +51,12 @@ public class CategoryController {
 
     @PostMapping("add")
     // @RequestBody <=> @ModelAttribute
-    public void addCate(@RequestBody CategoryRequest request) {
+    public void addCate(@Valid @RequestBody CategoryRequest request) {
         cateService.addCategory(request);
     }
 
     @PutMapping("update/{id}")
-    public void updateCate(@RequestBody CategoryRequest request, @PathVariable("id") Long id) {
+    public void updateCate(@Valid @RequestBody CategoryRequest request, @PathVariable("id") Long id) {
         cateService.updateCategory(request, id);
     }
 

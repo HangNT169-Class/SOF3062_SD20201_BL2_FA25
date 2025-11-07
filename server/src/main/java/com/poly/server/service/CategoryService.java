@@ -1,6 +1,7 @@
 package com.poly.server.service;
 
 import com.poly.server.entity.Category;
+import com.poly.server.expection.ApiException1;
 import com.poly.server.model.request.CategoryRequest;
 import com.poly.server.model.response.CategoryResponse;
 import com.poly.server.repository.CategoryRepository;
@@ -29,7 +30,6 @@ public class CategoryService {
     }
 
     public CategoryResponse getOne(Long id) {
-        // check ngoai le xem id ton tai chua ? Hom sau huong dan
         return new CategoryResponse(cateRepository.findById(id).get());
     }
 
@@ -51,6 +51,9 @@ public class CategoryService {
     }
 
     public void delete(Long id) {
+        // check ngoai le xem id ton tai chua ? Hom sau huong dan
+        cateRepository.findById(id).orElseThrow(
+                () -> new ApiException1("Id khong ton tai", "C01"));
         cateRepository.deleteById(id);
     }
 
