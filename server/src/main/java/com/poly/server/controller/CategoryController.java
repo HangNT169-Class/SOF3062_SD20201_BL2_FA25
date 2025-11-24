@@ -5,6 +5,7 @@ import com.poly.server.model.response.CategoryResponse;
 import com.poly.server.service.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/category-management")
+@CrossOrigin(origins = "*")
 public class CategoryController {
 
     // Restfull API => GET, POST, PUT, DELETE
@@ -58,6 +60,11 @@ public class CategoryController {
     @PutMapping("update/{id}")
     public void updateCate(@Valid @RequestBody CategoryRequest request, @PathVariable("id") Long id) {
         cateService.updateCategory(request, id);
+    }
+
+    @DeleteMapping("delete/{id}")
+    public void deleteCate2(@PathVariable("id") Long id) {
+        cateService.delete(id);
     }
 
     @DeleteMapping("delete")
