@@ -20,7 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/category-management")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*") //FE: Ket noi FE: cap quyen
 public class CategoryController {
 
     // Restfull API => GET, POST, PUT, DELETE
